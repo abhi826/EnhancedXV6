@@ -11,7 +11,12 @@ entryother
 initcode
 initcode.out
 kernelmemfs
-mkfs
 kernel/kernel
+mkfs
 user/usys.S
 .gdbinit
+cscope.files
+cscope.in.out
+cscope.out
+cscope.po.out
+

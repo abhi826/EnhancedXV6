@@ -1,13 +1,14 @@
 #include "kernel/types.h"
 #include "kernel/stat.h"
 #include "user/user.h"
-
+#include "kernel/syscall.h"
 char buf[512];
 
 void
 cat(int fd)
 {
   int n;
+  int readcount;
 
   while((n = read(fd, buf, sizeof(buf))) > 0) {
     if (write(1, buf, n) != n) {
@@ -15,6 +16,8 @@ cat(int fd)
       exit(1);
     }
   }
+ readcount = getreadcount();
+ fprintf(1, "The number of times read was called is %d", readcount);
   if(n < 0){
     fprintf(2, "cat: read error\n");
     exit(1);
